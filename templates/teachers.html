@@ -1,0 +1,39 @@
+{% extends main.html %}
+{% block content %}
+
+<ul>
+<ul class="collection">
+	{% for i,val in enumerate(data["courses"]) %}
+    <li class="collection-item avatar">
+      <i class="material-icons circle">perm_identity</i>
+      <span class="title">{{val["teacher"]["name"]}}</span>
+      <p>{{ val["course"]["title"] }} <br>
+      
+      {% if val["fdbk"]!= None %}
+      	<a href="#modal1" class="secondary-content waves-effect waves-light btn modal-trigger"><i class="material-icons">question_answer</i></a>
+
+
+      	<div id="modal1" class="modal">
+    	<div class="modal-content">
+
+      		<h4>Problems faced by you</h4>
+      		<ol>
+      			{% for prob in val["fdbk"]["fdbk"]["problems"] %}
+      				<li> {{prob}} </li>
+      			{% end %}
+     		</ol>
+    	</div>
+    	<div class="modal-footer">
+      		<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    	</div>
+  		</div>
+  	{% end %}
+    </li>
+    
+  	
+    {% end %}
+</ul>
+
+{% end %}
+
+

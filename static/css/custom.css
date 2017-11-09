@@ -1,0 +1,19 @@
+.padd-lt-20 {
+  padding-left: 20px !important;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.img_div_fit {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}

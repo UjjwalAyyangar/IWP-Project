@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Feedback Portal</title>
+
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="../static/css/materialize.min.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="../static/css/custom.css"  media="screen,projection"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    <nav class="blue darken-1">
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo padd-lt-20">Student Feedback Portal</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          
+          {% if data["loggedin"] == False %}
+            <li><a href="/">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+
+            
+          {% else %}
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/teachers">Teachers</a></li>
+            <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+            <li><a href="/logout">Logout</a></li>
+
+          {% end %}
+
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    {% block content %}
+    {% end %}
+  </main>
+
+  <footer class="page-footer blue darken-1">
+    <div class="footer-copyright">
+      <div class="container center">
+      © 2017 Copyright IWP_Project
+      </div>
+    </div>
+  </footer>
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="../static/js/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="../static/js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+      $('.modal').modal();
+    });
+  </script>
+</body>
+</html>

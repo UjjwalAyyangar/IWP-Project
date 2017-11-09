@@ -1,0 +1,162 @@
+{% extends main.html %}
+
+{% block content %}
+
+  <center><h3>Dashboard</h3></center>
+
+  <div class="row">
+    <div class="col s12 m4">
+      <div class="card-panel blue-grey white-text" style="height:390px;">
+        <h5 class="mb-0">Registration Number:</h5>
+        <div class="mb-4">{{ data["regno"] }}</div>
+        <h5 class="mb-0">Name:</h5>
+        <div class="mb-4">{{ data["name"]}}</div>
+        <h5 class="mb-0">Email:</h5>
+        <div class="mb-4">
+        <a href="mailto:{{ data["email"] }}" class="white-text">{{ data["email"] }}</a>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="col s12 m8" style="overflow:auto; height:400px;">
+      <div class="row">
+        {% for i,val in enumerate(data["courses"]) %}
+        
+        <div class="col s12 m12">
+          <div class="card-panel blue darken-1 white-text">
+            <div class="row">
+              <div class="col s12 m2">
+                {{ val["course"]["code"] }}
+              </div>
+              <div class="col s12 m4">
+                {{ val["course"]["title"] }}
+              </div>
+              <div class="col s12 m4">
+                {{ val["teacher"]["name"] }}
+              </div>
+              <div class="col s12 m2">
+                <a class="modal-trigger white-text" href="#modal_{{ i }}">Give Feedback</a>
+              </div>
+              <div id="modal_{{ i }}" class="modal">
+                <div class="modal-content black-text ">
+                  <h4>Feedback Form</h4>
+                  <hr>
+                  {% if bool(val["fdbk"]) %}
+                    <form action="/submitfdbk" method="post" name="fdbk_frm">
+                      <div class="row">
+                        <input name="course_id" type="hidden" value="{{ val['course']['code'] }}">
+                        <input name="fac_id" type="hidden" value="{{ val['teacher']['id'] }}">
+                        <div class="col s12 m6">
+                          <p class="form_ques" style="font-size:19px;">Conceptual Clarity</p>
+                        </div>
+                        <div class="col s12 m6">
+                          <p class="range-field">
+                            <input type="range" id="test5" min="0" max="5" name="q1" value="{{val['fdbk']['fdbk']['q1']}}"/>
+                          </p>
+                        </div>
+                        <div class="col s12 m6">
+                          <p class="form_ques" style="font-size:19px;">All Topics Covered</p>
+                        </div>
+                        <div class="col s12 m6">
+                          <p class="range-field">
+                            <input type="range" id="test5" min="0" max="5"  name="q2" value="{{val['fdbk']['fdbk']['q2']}}"/>
+                          </p>
+                        </div>
+                        <div class="col s12 m6">
+                          <p class="form_ques" style="font-size:19px;">Attention paid to weak students</p>
+                        </div>
+                        <div class="col s12 m6">
+                          <p class="range-field">
+                            <input type="range" id="test5" min="0" max="5"  name="q3" value="{{val['fdbk']['fdbk']['q3']}}"/>
+                          </p>
+                        </div>
+                        <div class="col s12 m6">
+                          <p class="form_ques" style="font-size:19px;">Availability during off hours</p>
+                        </div>
+                        <div class="col s12 m6">
+                          <p class="range-field">
+                            <input type="range" id="test5" min="0" max="5"  name="q4" value="{{val['fdbk']['fdbk']['q4']}}"/>
+                          </p>
+                        </div>
+                        <div class="col s12 m6">
+                          <p class="form_ques" style="font-size:19px;">Weekly Tutorials</p>
+                        </div>
+                        <div class="col s12 m6">
+                          <p class="range-field">
+                            <input type="range" id="test5" min="0" max="5"  name="q5" value="{{val['fdbk']['fdbk']['q5']}}"/>
+                          </p>
+                        </div>
+                        <div class="col s12 m12 center" style="padding-top:20px;">
+                          <div class="input field">
+          									<input type = "submit" value ="Submit Feedback" class="btn btn-default blue darken-1" style="width:auto;height:50px" disabled></input>
+          								</div>
+                        </div>
+                      </div>
+                    </form>
+
+                  {% else %}
+                    <form action="/submitfdbk" method="post" name="fdbk_frm">
+                      <div class="row">
+                        <input name="course_id" type="hidden" value="{{ val['course']['code'] }}">
+                        <input name="fac_id" type="hidden" value="{{ val['teacher']['id'] }}">
+                        <div class="col s12 m6">
+                          <p class="form_ques" style="font-size:19px;">Conceptual Clarity</p>
+                        </div>
+                        <div class="col s12 m6">
+                          <p class="range-field">
+                            <input type="range" id="test5" min="0" max="5" name="q1"/>
+                          </p>
+                        </div>
+                        <div class="col s12 m6">
+                          <p class="form_ques" style="font-size:19px;">All Topics Covered</p>
+                        </div>
+                        <div class="col s12 m6">
+                          <p class="range-field">
+                            <input type="range" id="test5" min="0" max="5"  name="q2"/>
+                          </p>
+                        </div>
+                        <div class="col s12 m6">
+                          <p class="form_ques" style="font-size:19px;">Attention paid to weak students</p>
+                        </div>
+                        <div class="col s12 m6">
+                          <p class="range-field">
+                            <input type="range" id="test5" min="0" max="5"  name="q3"/>
+                          </p>
+                        </div>
+                        <div class="col s12 m6">
+                          <p class="form_ques" style="font-size:19px;">Availability during off hours</p>
+                        </div>
+                        <div class="col s12 m6">
+                          <p class="range-field">
+                            <input type="range" id="test5" min="0" max="5"  name="q4"/>
+                          </p>
+                        </div>
+                        <div class="col s12 m6">
+                          <p class="form_ques" style="font-size:19px;">Weekly Tutorials</p>
+                        </div>
+                        <div class="col s12 m6">
+                          <p class="range-field">
+                            <input type="range" id="test5" min="0" max="5"  name="q5"/>
+                          </p>
+                        </div>
+                        <div class="col s12 m12 center" style="padding-top:20px;">
+                          <div class="input field">
+                            <input type = "submit" value ="Submit Feedback" class="btn btn-default blue darken-1" style="width:auto;height:50px"></input>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  {% end %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% end %}
+      </div>
+    </div>
+  </div>
+
+{% end %}

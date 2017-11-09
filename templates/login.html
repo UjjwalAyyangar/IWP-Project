@@ -1,0 +1,36 @@
+{% extends main.html %}
+
+{% block content %}
+  <!-- login form -->
+  <div class="row">
+			<div class="col s4 offset-s4" style="padding-top: 5%">
+				<div class="card-panel">
+					<div class="row">
+						<form class="col s12" action="/login" method="post" name="login">
+							<div class="row">
+                <center>
+                  <div>
+  									<h4>LOGIN</h4>
+  								</div>
+                </center>
+								<div class="input-field col s12">
+									<input type="text" class="validate" name="regno">
+									<label for="regno">Registration Number</label>
+								</div>
+								<div class="input-field col s12">
+									<input id="password" type="password" class="validate" name="pswd">
+									<label for="password">Password</label>
+								</div>
+                <center>
+  								<div class="input field">
+  									<input type = "submit" value ="Login" class="btn btn-default blue darken-1" style="width:auto;height:50px"></input>
+  								</div>
+                </center>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
+{% end %}
